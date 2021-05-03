@@ -19,7 +19,7 @@ for s in ${sizes[@]}; do
                 for i in $(seq 1 $rep); do
                         echo -e "On n=$s, $f ambiguous signal, rep $i"
                         path=/home/chengzes/Desktop/Classes/CS598MEB/data/$indata/SCS/n=$s/$f/rep$i.tsv
-                        outdir=$indata/n=$s/$f/rep$i
+                        outdir=${indata}_output/n=$s/$f/rep$i
                         if [ ! -e $outdir ]; then
                                 mkdir -p $outdir
                         fi
