@@ -150,11 +150,18 @@ def evaluateTree(path, node):
     print("Same-node-label pairs:")
     print(node.getSameNodePairs())
 
-def computeFNFP(ref_list, est_list):
+def computeFNFP(ref_list, est_list, task):
     # use numpy intersect1d to find overlaps
-    ref_dict = {k:1 for k in ref_list}
-    est_dict = {k:1 for k in est_list}
-    tp = [k for k in ref_dict.keys()&est_dict.keys()]
+    if task != 'ad':
+        sorted_ref_list = [tuple(sorted(a)) for a in ref_list]
+        sorted_est_list = [tuple(sorted(a)) for a in est_list]
+        ref_dict = {k:1 for k in sorted_ref_list}
+        est_dict = {k:1 for k in sorted_est_list}
+        tp = [k for k in ref_dict.keys()&est_dict.keys()]
+    else:
+        ref_dict = {k:1 for k in ref_list}
+        est_dict = {k:1 for k in est_list}
+        tp = [k for k in ref_dict.keys()&est_dict.keys()]
 
     if len(ref_list) == 0:
         fnr = 0
@@ -174,19 +181,19 @@ def compareTree(ref, est):
     ref_ad = ref.getAncestorDescendentPairs()
     est_ad = est.getAncestorDescendentPairs()
     #print(ref_ad, '\n', est_ad)
-    fn_ad, fp_ad = computeFNFP(ref_ad, est_ad)
+    fn_ad, fp_ad = computeFNFP(ref_ad, est_ad, 'ad')
     
     # DB pairs
     ref_db = ref.getSeparateBranchPairs()
     est_db = est.getSeparateBranchPairs()
     #print(ref_db, '\n', est_db)
-    fn_db, fp_db = computeFNFP(ref_db, est_db)
+    fn_db, fp_db = computeFNFP(ref_db, est_db, 'db')
 
     # SNL pairs
     ref_snl = ref.getSameNodePairs()
     est_snl = est.getSameNodePairs()
     #print(ref_snl, '\n', est_snl)
-    fn_snl, fp_snl = computeFNFP(ref_snl, est_snl)
+    fn_snl, fp_snl = computeFNFP(ref_snl, est_snl, 'snl')
     
     # return a list in the order of AD FN/FP, DB FN/FP, SNL FN/FP
     return [fn_ad, fp_ad, fn_db, fp_db, fn_snl, fp_snl]
@@ -245,7 +252,7 @@ def main():
                         df_list.append(row)
                     
                     # 2) modified PhISCS estimated tree
-                    est_tree_path = '{}/n={}/{}/rep{}/rep{}.tre'.format(
+                    est_tree_path = '{}_output/n={}/{}/rep{}/rep{}.tre'.format(
                             sim, n, m, i, i)
                     est_tree = readTree(est_tree_path)
                     row = ['modified_PhISCS', i, n, m, 0] \
