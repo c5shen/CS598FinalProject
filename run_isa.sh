@@ -26,10 +26,20 @@ for s in ${sizes[@]}; do
                                 fi
                                 
                                 gfn=$(bc <<< "$fn + 0.000001")
-                                # data violating ISA
+                                ## data violating ISA
+                                #{ $time -v python PhISCS-I -SCFile $path \
+                                #        -o $outdir -fn $gfn -fp 0.000001 \
+                                #        --drawTree --threads 8 -p 1 ; } \
+                                #        > $outdir/runtime.txt 2>&1
+
+                                # data violating ISA p=10
+                                outdir=${indata}_p=10_output/n=$s/b=$fn/$f/rep$i
+                                if [ ! -e $outdir ]; then
+                                        mkdir -p $outdir
+                                fi
                                 { $time -v python PhISCS-I -SCFile $path \
                                         -o $outdir -fn $gfn -fp 0.000001 \
-                                        --drawTree --threads 8 -p 1 ; } \
+                                        --drawTree --threads 8 -p 10 ; } \
                                         > $outdir/runtime.txt 2>&1
                         done
                 done

@@ -1,0 +1,67 @@
+Academic license - for non-commercial use only - expires 2021-06-21
+Using license file /home/chengzes/gurobi.lic
+Parameter LogFile unchanged
+   Value:   Default: 
+Changed value of parameter Threads to 8
+   Prev: 0  Min: 0  Max: 1024  Default: 0
+Changed value of parameter TimeLimit to 86400.0
+   Prev: inf  Min: 0.0  Max: inf  Default: inf
+Generating variables...
+Generating constraints...
+Gurobi Optimizer version 9.1.1 build v9.1.1rc0 (linux64)
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+Optimize a model with 14758 rows, 900 columns and 40847 nonzeros
+Model fingerprint: 0xc85f8011
+Variable types: 0 continuous, 900 integer (900 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [2e+00, 1e+01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 2e+00]
+Found heuristic solution: objective -1492.075360
+Presolve removed 2116 rows and 67 columns
+Presolve time: 0.03s
+Presolved: 12642 rows, 833 columns, 38010 nonzeros
+Variable types: 0 continuous, 833 integer (833 binary)
+
+Root relaxation: objective -3.549201e+01, 179 iterations, 0.02 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+*    0     0               0     -35.4920079  -35.49201  0.00%     -    0s
+
+Explored 0 nodes (179 simplex iterations) in 0.07 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 2: -35.492 -1492.08 
+No other solutions better than -35.492
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -3.549200789731e+01, best bound -3.549200789730e+01, gap 0.0000%
+Optimal solution: -35.492008
+MUTATIONS_REMOVED_ID: mut3.mut5
+
+	Command being timed: "python PhISCS-I -SCFile /home/chengzes/Desktop/Classes/CS598MEB/CS598FinalProject/isa_violations/SCS/n=100/b=0.2/0.5/rep3.tsv -o isa_violations_p=10_output/n=100/b=0.2/0.5/rep3 -fn .200001 -fp 0.000001 --drawTree --threads 8 -p 10"
+	User time (seconds): 0.70
+	System time (seconds): 0.30
+	Percent of CPU this job got: 194%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.52
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 106112
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 33871
+	Voluntary context switches: 46
+	Involuntary context switches: 13
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 144
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
